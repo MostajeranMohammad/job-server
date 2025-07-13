@@ -76,6 +76,11 @@ export class JobTransformationService {
     max: number;
     currency: string;
   } {
+    // Handle null/undefined values
+    if (!salaryRange) {
+      return { min: 0, max: 0, currency: '' };
+    }
+
     // Parse format like "$62k - $136k" or "$90k - $130k"
     const match = salaryRange.match(/\$(\d+)k\s*-\s*\$(\d+)k/);
     if (match) {
